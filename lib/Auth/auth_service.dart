@@ -106,7 +106,7 @@ contentsFunction(user,category,_photo,contentsController,post) async {  //파이
         'imageUrl' : _photo,
         'adress' : post,
         'category' : category,
-        'like' : _like,
+        '_like' : _like,
         '_comment' : _comment
       }).whenComplete(() => print('데이터 저장 성공'));
     }
@@ -116,6 +116,15 @@ LikeFunction(like, id, user) async {
   List _likes = like;
   _likes.add(user);
   var doc = FirebaseFirestore.instance.collection('Contents').doc(id);
-  doc.update({'like': _likes, '${user}': user}).whenComplete(
+  doc.update({'_like': _likes}).whenComplete(
       () => print('좋아요 업데이트 성공'));
+}
+
+LikeDeleteFunction(like, id, user) async {
+  // 좋아요 삭제 기능
+  List _likes = like;
+  _likes.remove(user);
+  var doc = FirebaseFirestore.instance.collection('Contents').doc(id);
+  doc.update({'_like': _likes}).whenComplete(
+      () => print('좋아요 삭제 업데이트 성공'));
 }

@@ -43,23 +43,7 @@ var my_list2 = ['홈', '커뮤니티', '카메라','앨범','프로필'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(my_list2.elementAt(_selectedIndex)),
-        // title: Text(FirebaseAuth.instance.currentUser!.displayName!),
-        actions: [
-          Row(children: [
-            IconButton(
-              onPressed: () {
-                signOut();
-              }, 
-              icon: Icon(Icons.notifications)),
-              SizedBox(
-                width: 5,
-              )
-          ],)
-        ],
-        backgroundColor: Colors.blueAccent,
-      ),
+  
       body: SafeArea(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

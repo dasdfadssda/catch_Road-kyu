@@ -19,7 +19,6 @@ class _HomePageState extends State<HomePage> {
 final FirebaseAuth _auth = FirebaseAuth.instance;
 var _toDay = DateTime.now(); // 시간 비교 하기
 int _mylike = 0;
- int _Likes = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +29,7 @@ int _mylike = 0;
          shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(20.0)),
       title:TextButton(
-        child:  Text('양덕동 외 1곳',style:SubTitleStyle(),), 
+        child:  Center(child: Text('양덕동 외 1곳',style:SubTitleStyle(color: Colors.black),)), 
         onPressed: (){
         },
       ),
@@ -112,17 +111,20 @@ int _mylike = 0;
                             padding: EdgeInsets.all(0.0),
                             // alignment: Alignment.topLeft,
                             iconSize: 14,
-                            // icon: Icon(_mylike==0 ? Icons.favorite_border : Icons.favorite),
-                            icon: Icon(Icons.favorite_border_outlined),
+                            icon: Icon(_mylike==0 ? Icons.favorite_border : Icons.favorite),
+                            // icon: Icon(Icons.favorite_border_outlined),
                             onPressed: () {
                               setState(() {
                      if(snapshot.data!.docs[index]['_like'].length != 0){
                              for(int i=0; i<snapshot.data!.docs[index]['_like'].length; i++) {
                              if(snapshot.data!.docs[index]['_like'][i] == FirebaseAuth.instance.currentUser!.displayName!) {
                                print('있어');
+                               LikeDeleteFunction(snapshot.data!.docs[index]['_like'],snapshot.data!.docs[index]['id'],FirebaseAuth.instance.currentUser!.displayName!,);
+                               _mylike = 0;
                                break;
                              } else {
                                print('없어');
+                               _mylike = 1;
                               LikeFunction(snapshot.data!.docs[index]['_like'],snapshot.data!.docs[index]['id'],FirebaseAuth.instance.currentUser!.displayName!,);
                              }
                            }
