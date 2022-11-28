@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       '/detail' : ((context) => DetailScreen())},
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
+        // primarySwatch: Color(0xffFAFBFB)
       ),
       // home: MainHomePage()
       home : AuthService().handleAuthState()

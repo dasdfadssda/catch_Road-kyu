@@ -58,6 +58,8 @@ signInWithGoogle() async {
   DocumentSnapshot documentSnapshot =
       await userReference.doc(googleUser.email).get();
 
+      
+
   // Once signed in, return the UserCredential
   return await FirebaseAuth.instance.signInWithCredential(credential);
 }
